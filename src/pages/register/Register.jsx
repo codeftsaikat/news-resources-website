@@ -1,12 +1,27 @@
 import { Link } from "react-router-dom";
 import Navbar from "../shared/navbar/Navbar";
-
+import { useContext } from "react";
+import { Context } from "../../context/AuthContext";
 const Register = () => {
+  const {createUser} = useContext(Context)
+
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
-    console.log(form.get("password"));
+    const name = form.get("name");
+    const photo = form.get("photo_url");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(name, photo, email, password);
+
+    // implement createUser
+    createUser(email,password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -70,7 +85,7 @@ const Register = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="password"
               >
-               Your Password
+                Your Password
               </label>
               <input
                 name="password"
@@ -89,8 +104,12 @@ const Register = () => {
             </button>
           </form>
           <p className="text-black text-center mt-4">
-          If you have an account? Please <Link to="/login" className="text-blue-500 font-semibold">login</Link> now!
-        </p>
+            If you have an account? Please{" "}
+            <Link to="/login" className="text-blue-500 font-semibold">
+              login
+            </Link>{" "}
+            now!
+          </p>
         </div>
       </div>
     </div>
