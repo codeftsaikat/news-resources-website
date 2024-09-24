@@ -57,7 +57,7 @@ function Navbar() {
             />
           </div>
         </div>
-        <Link path="/login">
+        <Link to="/login">
           <button className="btn ml-2">Login</button>
         </Link>
       </div>
