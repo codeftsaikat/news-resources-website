@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB9Qtce3e4q8HBCcphWPrjgkFdYEe68M1A",
-  authDomain: "dragon-resources.firebaseapp.com",
-  projectId: "dragon-resources",
-  storageBucket: "dragon-resources.appspot.com",
-  messagingSenderId: "867744584095",
-  appId: "1:867744584095:web:4ef6558a0550d5daae6daa",
+  apiKey:import.meta.env.VITE_APIKEY,
+  authDomain:import.meta.env.VITE_AUTHDOMAIN,
+  projectId:import.meta.env.VITE_PROJECTID,
+  storageBucket:import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId:import.meta.env.VITE_MESSAGINGSENDERID,
+  appId:import.meta.env.VITE_APPID,
 };
 
 const app = initializeApp(firebaseConfig);

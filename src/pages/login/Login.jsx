@@ -1,26 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../shared/navbar/Navbar";
 import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 
 const Login = () => {
-
-  const {logIn,setUser} = useContext(Context)
+  const { logIn } = useContext(Context);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
-    const email = form.get('email')
-    const password = form.get('password')
+    const email = form.get("email");
+    const password = form.get("password");
 
-    logIn(email,password)
-    .then(result=>{
-      console.log(result);
-      setUser(result)
-    })
-    .catch(error=>console.log(error)
-    )
+    logIn(email, password)
+      .then((result) => {
+        console.log(result);
+
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div>
@@ -71,8 +72,12 @@ const Login = () => {
             </button>
           </form>
           <p className="text-black text-center mt-4">
-          Don't have an account? Please <Link to="/register" className="text-red-500 font-semibold">register</Link> now!
-        </p>
+            Don't have an account? Please{" "}
+            <Link to="/register" className="text-red-500 font-semibold">
+              register
+            </Link>{" "}
+            now!
+          </p>
         </div>
       </div>
     </div>
